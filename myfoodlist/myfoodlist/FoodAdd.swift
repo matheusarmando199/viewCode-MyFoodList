@@ -15,7 +15,7 @@ class FoodAdd: UIViewController {
         mfll.translatesAutoresizingMaskIntoConstraints = false
         mfll.text = "MyFoodList"
         mfll.textColor = .white
-        mfll.font = UIFont.systemFont(ofSize: 18)
+        mfll.font = UIFont.boldSystemFont(ofSize: 24)
         mfll.textAlignment = .center
         return mfll
     }()
@@ -88,6 +88,20 @@ class FoodAdd: UIViewController {
         return abt
     }()
     
+    lazy var backButton: UIButton = {
+        let bb = UIButton()
+        bb.translatesAutoresizingMaskIntoConstraints = false
+        bb.setTitle("<", for: .normal)
+        bb.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        bb.setTitleColor(.black, for: .normal)
+        bb.clipsToBounds = true
+        bb.layer.cornerRadius = 7.5
+        bb.backgroundColor = .white
+        bb.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
+        return bb
+    }()
+    
+    
     //funcionalidades
     func setUpAllElements(){
         view.addSubview(myFoodListLabel)
@@ -99,6 +113,7 @@ class FoodAdd: UIViewController {
  
         view.addSubview(adicionarButton)
         view.addSubview(cancelarButton)
+        view.addSubview(backButton)
     }
     
     func setUpBackGoundColor() {
@@ -112,30 +127,56 @@ class FoodAdd: UIViewController {
     }
     
     @objc func adicionarfunc(){
-        validaTextFild(vf:true)
+        validaTextFildRage(vf: true)
+        validaTextFieldsVazios(vf: true)
     }
     
     @objc func cancelarfunc(){
+        let campoVazio: String = ""
+        foodTextField.text = campoVazio
+        foodNoteTextFild.text = campoVazio
+    }
+    
+    @objc func backButtonAction(){
         let lfa:FoodList = FoodList()
         self.navigationController?.pushViewController(lfa, animated: true)
     }
     
-    func validaTextFild(vf: Bool){
+    func validaTextFildRage(vf: Bool){
         let nota: String = foodNoteTextFild.text ?? ""
-        
+       
         let notaInt = Int(nota)
         
         guard let notaInt = notaInt else {return}
         
         if ((notaInt <= 10) && (notaInt >= 0)) {
-            print("batata")
+    
         }else{
+            let alert: UIAlertController = UIAlertController(title: "Atenção", message: "\(notaInt) não está dentro do range que deve ser de 0 a 10", preferredStyle: .alert)
+            let tentarNovamenteAlert: UIAlertAction = UIAlertAction(title: "Tentar novamente", style: .cancel)
+            alert.addAction(tentarNovamenteAlert)
+            present(alert, animated: true, completion: nil)
+            
             foodNoteLabel.textColor = .red
             foodNoteLabel.text = "Digite abaixo uma nota de 0 até 10 para a comida digitada a cima!!!"
         }
         
     }
     
+    func validaTextFieldsVazios(vf: Bool){
+        let food: String = foodTextField.text ?? ""
+        let nota: String = foodNoteTextFild.text ?? ""
+        
+        if food.isEmpty || nota.isEmpty {
+            let alert: UIAlertController = UIAlertController(title: "Atenção", message: "um dos campos estão vazios, revise as informações", preferredStyle: .alert)
+            let revisarDados: UIAlertAction = UIAlertAction(title: "Revisar dados", style: .cancel)
+            alert.addAction(revisarDados)
+            present(alert, animated: true, completion: nil)
+        }else{
+            
+        }
+        
+    }
     
     //constraints
     
@@ -145,6 +186,12 @@ class FoodAdd: UIViewController {
             myFoodListLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             myFoodListLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             myFoodListLabel.heightAnchor.constraint(equalToConstant: 40),
+            
+
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 2),
+            backButton.trailingAnchor.constraint(equalTo: myFoodListLabel.leadingAnchor, constant: -10),
+            
             
             foodDescription.topAnchor.constraint(equalTo: myFoodListLabel.bottomAnchor, constant: 80),
             foodDescription.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),

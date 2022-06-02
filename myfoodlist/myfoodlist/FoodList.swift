@@ -15,7 +15,7 @@ class FoodList: UIViewController {
         mfll.translatesAutoresizingMaskIntoConstraints = false
         mfll.text = "MyFoodList"
         mfll.textColor = .black
-        mfll.font = UIFont.systemFont(ofSize: 18)
+        mfll.font = UIFont.boldSystemFont(ofSize: 24)
         mfll.textAlignment = .center
         return mfll
     }()
@@ -33,17 +33,28 @@ class FoodList: UIViewController {
         return abt
     }()
     
-    
+    lazy var foodTableView: UITableView = {
+        let ftb = UITableView()
+        ftb.translatesAutoresizingMaskIntoConstraints = false
+        ftb.backgroundColor = .white
+        return ftb
+    }()
     
     
     // funcionalidades
     func setUpAllElements(){
         view.addSubview(myFoodListLabel)
         view.addSubview(addButton)
+        view.addSubview(foodTableView)
     }
     
     func setUpBackGroundColor(){
         view.backgroundColor = .systemGreen
+    }
+    
+    func setUpTableViewProtocols(delegate: UITableViewDelegate, dataSource: UITableViewDataSource){
+        foodTableView.delegate = delegate
+        foodTableView.dataSource = dataSource
     }
     
     @objc func addFunc(){
@@ -62,7 +73,13 @@ class FoodList: UIViewController {
             
             addButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
             addButton.leadingAnchor.constraint(equalTo: myFoodListLabel.trailingAnchor, constant: 2),
-            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
+            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            
+            
+            foodTableView.topAnchor.constraint(equalTo: myFoodListLabel.bottomAnchor, constant: 20),
+            foodTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            foodTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            foodTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         
         ])
     }
@@ -75,10 +92,31 @@ class FoodList: UIViewController {
         setUpBackGroundColor()
         setUpAllElements()
         setUpConstraints()
+        setUpTableViewProtocols(delegate: self, dataSource: self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
 }
+
+ // delegates protocolos e extensões
+
+extension FoodList: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return  4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let color:[UIColor] = [.systemRed, .systemBlue, .systemPink, .systemBrown]
+        let cell: UITableViewCell = UITableViewCell()
+        cell.backgroundColor = color[indexPath.row]
+
+        return cell
+    }
+}
+
+
+
 
