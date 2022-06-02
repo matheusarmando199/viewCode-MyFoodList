@@ -8,7 +8,15 @@
 import UIKit
 
 class FoodList: UIViewController {
-
+    
+    // dados
+    var data:[DataUser] = [
+        DataUser(comida: "Comida", nota: "Nota"),
+        DataUser(comida: "feijão", nota: "2"),
+        DataUser(comida: "estrogonof", nota: "10")
+       ]
+    
+    
     // elementos
     lazy var myFoodListLabel: UILabel = {
         let mfll = UILabel()
@@ -37,6 +45,7 @@ class FoodList: UIViewController {
         let ftb = UITableView()
         ftb.translatesAutoresizingMaskIntoConstraints = false
         ftb.backgroundColor = .white
+        ftb.register(UserDetailTableViewCell.self, forCellReuseIdentifier: UserDetailTableViewCell.identifier)
         return ftb
     }()
     
@@ -105,17 +114,21 @@ class FoodList: UIViewController {
 extension FoodList: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  4
+        return  data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let color:[UIColor] = [.systemRed, .systemBlue, .systemPink, .systemBrown]
-        let cell: UITableViewCell = UITableViewCell()
-        cell.backgroundColor = color[indexPath.row]
-
-        return cell
-    }
+           let cell: UserDetailTableViewCell? = tableView.dequeueReusableCell(withIdentifier: UserDetailTableViewCell.identifier, for: indexPath) as? UserDetailTableViewCell
+           
+           cell?.setUpCell(data: self.data[indexPath.row])
+           return cell ?? UITableViewCell()
+       }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+          return 120
+      }
 }
+
 
 
 

@@ -129,6 +129,21 @@ class FoodAdd: UIViewController {
     @objc func adicionarfunc(){
         validaTextFildRage(vf: true)
         validaTextFieldsVazios(vf: true)
+        
+        let nomeComida: String = foodTextField.text ?? ""
+        let nota: String = foodNoteTextFild.text ?? ""
+        
+        
+        let newdata:[DataUser] = [DataUser(comida: nomeComida, nota: nota)]
+
+        
+        let lfa:FoodList = FoodList()
+        self.navigationController?.pushViewController(lfa, animated: true)
+        lfa.data += newdata
+        
+        
+        
+        
     }
     
     @objc func cancelarfunc(){

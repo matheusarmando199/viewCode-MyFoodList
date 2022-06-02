@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		153464D028485B6C00C15401 /* UserDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153464CF28485B6C00C15401 /* UserDetailTableViewCell.swift */; };
+		153464D228485CE000C15401 /* DataUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153464D128485CE000C15401 /* DataUser.swift */; };
 		158F78432845A03E004C94BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158F78422845A03E004C94BE /* AppDelegate.swift */; };
 		158F78452845A03E004C94BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158F78442845A03E004C94BE /* SceneDelegate.swift */; };
 		158F78472845A03E004C94BE /* FoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158F78462845A03E004C94BE /* FoodList.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		153464CF28485B6C00C15401 /* UserDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailTableViewCell.swift; sourceTree = "<group>"; };
+		153464D128485CE000C15401 /* DataUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUser.swift; sourceTree = "<group>"; };
 		158F783F2845A03E004C94BE /* myfoodlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myfoodlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		158F78422845A03E004C94BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		158F78442845A03E004C94BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +41,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		153464CE28485B4400C15401 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				153464CF28485B6C00C15401 /* UserDetailTableViewCell.swift */,
+				153464D128485CE000C15401 /* DataUser.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		158F78362845A03E004C94BE = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +69,7 @@
 		158F78412845A03E004C94BE /* myfoodlist */ = {
 			isa = PBXGroup;
 			children = (
+				153464CE28485B4400C15401 /* Cell */,
 				158F78422845A03E004C94BE /* AppDelegate.swift */,
 				158F78442845A03E004C94BE /* SceneDelegate.swift */,
 				158F78462845A03E004C94BE /* FoodList.swift */,
@@ -137,7 +151,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				153464D028485B6C00C15401 /* UserDetailTableViewCell.swift in Sources */,
 				158F78472845A03E004C94BE /* FoodList.swift in Sources */,
+				153464D228485CE000C15401 /* DataUser.swift in Sources */,
 				158F78572845A4C5004C94BE /* FoodAdd.swift in Sources */,
 				158F78432845A03E004C94BE /* AppDelegate.swift in Sources */,
 				158F78452845A03E004C94BE /* SceneDelegate.swift in Sources */,
