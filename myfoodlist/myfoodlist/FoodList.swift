@@ -44,7 +44,7 @@ class FoodList: UIViewController {
     lazy var foodTableView: UITableView = {
         let ftb = UITableView()
         ftb.translatesAutoresizingMaskIntoConstraints = false
-        ftb.backgroundColor = .white
+        ftb.backgroundColor = .systemGreen
         ftb.register(UserDetailTableViewCell.self, forCellReuseIdentifier: UserDetailTableViewCell.identifier)
         return ftb
     }()

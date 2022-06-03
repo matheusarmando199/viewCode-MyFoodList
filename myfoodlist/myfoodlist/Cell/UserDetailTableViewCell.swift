@@ -16,14 +16,14 @@ class UserDetailTableViewCell: UITableViewCell {
     lazy var comidaLabel:UILabel = {
         let nl = UILabel()
         nl.translatesAutoresizingMaskIntoConstraints = false
-        nl.textColor = .white
+        nl.textColor = .systemGray
         return nl
     }()
     
     lazy var notaLabel:UILabel = {
         let nl = UILabel()
         nl.translatesAutoresizingMaskIntoConstraints = false
-        nl.textColor = .white
+        nl.textColor = .systemGray
         return nl
     }()
     
